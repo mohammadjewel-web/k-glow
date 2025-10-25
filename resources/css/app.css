@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Button Styles */
+.btn-primary {
+    background-color: #f36c21;
+    color: #fff;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #d95a18;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #f36c21;
+    border: 2px solid #f36c21;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background-color: #f36c21;
+    color: #fff;
+}
+
+/* Quantity Update Buttons */
+.update-qty {
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.update-qty:hover {
+    background-color: #e5e7eb;
+    border-color: #9ca3af;
+}
+
+/* Remove Button */
+.remove-item {
+    background-color: transparent;
+    border: none;
+    color: #dc2626;
+    transition: all 0.2s;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.remove-item:hover {
+    color: #b91c1c;
+    text-decoration: none;
+}

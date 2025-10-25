@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Return & Refund Policy</title>
+
+    <link rel="icon" href="fav.PNG" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <style>
+      :root {
+        --brand-orange: #f36c21;
+      }
+      .hero-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 9999px;
+      }
+      :root {
+        --root-color: #f36c21;
+      }
+      .btn-primary {
+        background-color: var(--root-color);
+        color: #fff;
+        transition: all 0.2s;
+      }
+      .btn-primary:hover {
+        background-color: #d95a18;
+      }
+      .btn-outline {
+        border: 1px solid var(--root-color);
+        color: var(--root-color);
+        transition: all 0.2s;
+      }
+      .btn-outline:hover {
+        background-color: var(--root-color);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body class="antialiased text-gray-800 bg-gray-50">
+    <!-- Header -->
+    <header class="glass fixed top-0 left-0 right-0 z-50 shadow-sm bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex items-center gap-4">
+            <a href="#" class="flex items-center gap-3">
+              <img
+                src="logo.png"
+                alt="logo"
+                class="h-12 w-auto object-contain rounded"
+              />
+            </a>
+          </div>
+
+          <div class="flex-1 px-6 hidden sm:block">
+            <div class="relative max-w-2xl mx-auto">
+              <input
+                id="search"
+                type="search"
+                placeholder="Search for products..."
+                class="w-full border rounded-full pl-12 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+              />
+              <svg
+                class="w-5 h-5 absolute left-4 top-3 text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <button
+              id="cartBtn"
+              class="relative px-3 py-2 rounded hover:bg-gray-100"
+            >
+              <svg
+                class="w-6 h-6 inline"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 7h13l-2-7M16 21a1 1 0 11-2 0 1 1 0 012 0zm-8 0a1 1 0 11-2 0 1 1 0 012 0z"
+                />
+              </svg>
+              <span
+                id="cartCount"
+                class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+                >0</span
+              >
+            </button>
+            <!-- Login/Register Buttons -->
+
+            <button
+              id="loginBtn"
+              class="px-4 py-2 bg-[var(--brand-orange)] text-white rounded shadow hover:bg-orange-600"
+            >
+              Login
+            </button>
+            <button
+              id="registerBtn"
+              class="px-4 py-2 bg-gray-700 text-white rounded shadow hover:bg-gray-800"
+            >
+              Register
+            </button>
+
+            <!-- Modal Overlay -->
+            <div
+              id="modalOverlay"
+              class="fixed inset-0 bg-black/40 hidden z-40"
+            ></div>
+
+            <!-- Right Side Modal -->
+            <div
+              id="sideModal"
+              class="fixed top-0 right-0 w-96 max-w-full h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50"
+            >
+              <div class="flex justify-between items-center p-4 border-b">
+                <h2 id="modalTitle" class="text-xl font-semibold">Login</h2>
+                <button
+                  id="closeModal"
+                  class="text-gray-600 hover:text-gray-900 text-2xl font-bold"
+                >
+                  &times;
+                </button>
+              </div>
+
+              <div class="p-6">
+                <!-- Login Form -->
+                <form id="loginForm" class="">
+                  <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1">Email</label>
+                    <input
+                      type="email"
+                      class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-400"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                  <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1"
+                      >Password</label
+                    >
+                    <input
+                      type="password"
+                      class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-400"
+                      placeholder="Enter your password"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="w-full py-2 bg-[var(--brand-orange)] text-white rounded hover:bg-orange-600 transition"
+                  >
+                    Login
+                  </button>
+                  <p class="mt-4 text-sm text-gray-500 text-center">
+                    Don't have an account?
+                    <span
+                      id="switchToRegister"
+                      class="text-[var(--brand-orange)] cursor-pointer hover:underline"
+                      >Register</span
+                    >
+                  </p>
+                </form>
+
+                <!-- Register Form -->
+                <form id="registerForm" class="hidden">
+                  <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1">Name</label>
+                    <input
+                      type="text"
+                      class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-400"
+                      placeholder="Enter your name"
+                    />
+                  </div>
+                  <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1">Email</label>
+                    <input
+                      type="email"
+                      class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-400"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                  <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1"
+                      >Password</label
+                    >
+                    <input
+                      type="password"
+                      class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-400"
+                      placeholder="Enter your password"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="w-full py-2 bg-[var(--brand-orange)] text-white rounded hover:bg-orange-600 transition"
+                  >
+                    Register
+                  </button>
+                  <p class="mt-4 text-sm text-gray-500 text-center">
+                    Already have an account?
+                    <span
+                      id="switchToLogin"
+                      class="text-[var(--brand-orange)] cursor-pointer hover:underline"
+                      >Login</span
+                    >
+                  </p>
+                </form>
+              </div>
+            </div>
+            <button id="menuBtn" class="sm:hidden px-3 py-2">☰</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- nav -->
+
+      <nav class="border-t relative bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ul class="flex gap-6 py-3 text-sm justify-center">
+            <!-- Center menu -->
+            <!-- SKIN CARE -->
+            <li class="relative group">
+              <a
+                href="#"
+                class="hover:text-[var(--brand-orange)] flex items-center gap-1"
+              >
+                SKIN CARE
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M5.23 7.21a.75.75 0 011.06-.02L10 10.92l3.71-3.73a.75.75 0 111.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.25 8.23a.75.75 0 01-.02-1.06z"
+                  />
+                </svg>
+              </a>
+              <!-- Mega Menu -->
+              <div
+                class="absolute left-1/2 transform top-full w-[800px] bg-white shadow-lg p-6 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50"
+              >
+                <div class="grid grid-cols-3 gap-6">
+                  <div>
+                    <h4 class="font-bold mb-2 flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-[var(--brand-orange)]"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M4 3h12v2H4V3zM4 7h12v2H4V7zM4 11h12v2H4v-2zM4 15h12v2H4v-2z"
+                        />
+                      </svg>
+                      By Product Type
+                    </h4>
+                    <ul class="space-y-1 text-sm">
+                      <li>Moisturizer</li>
+                      <li>Serum</li>
+                      <li>Essence</li>
+                      <li>Toner</li>
+                      <li>Cleanser</li>
+                      <li>Sunscreen</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-bold mb-2 flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-[var(--brand-orange)]"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M4 3h12v2H4V3zM4 7h12v2H4V7zM4 11h12v2H4v-2zM4 15h12v2H4v-2z"
+                        />
+                      </svg>
+                      By Skin Type
+                    </h4>
+                    <ul class="space-y-1 text-sm">
+                      <li>Normal</li>
+                      <li>Oily</li>
+                      <li>Dry</li>
+                      <li>Sensitive</li>
+                      <li>Combination</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-bold mb-2 flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-[var(--brand-orange)]"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M4 3h12v2H4V3zM4 7h12v2H4V7zM4 11h12v2H4v-2zM4 15h12v2H4v-2z"
+                        />
+                      </svg>
+                      By Ingredient
+                    </h4>
+                    <ul class="space-y-1 text-sm">
+                      <li>Niacinamide</li>
+                      <li>Hyaluronic Acid</li>
+                      <li>Centella Asiatica</li>
+                      <li>Tea Tree</li>
+                      <li>Green Tea</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- BRAND -->
+            <li class="relative group">
+              <a
+                href="#"
+                class="hover:text-[var(--brand-orange)] flex items-center gap-1"
+              >
+                BRAND
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M5.23 7.21a.75.75 0 011.06-.02L10 10.92l3.71-3.73a.75.75 0 111.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.25 8.23a.75.75 0 01-.02-1.06z"
+                  />
+                </svg>
+              </a>
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 top-full w-48 bg-white shadow-lg p-4 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50"
+              >
+                <ul class="space-y-1 text-sm">
+                  <li>Brand A</li>
+                  <li>Brand B</li>
+                  <li>Brand C</li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- Other Menu Items -->
+            <li>
+              <a href="#" class="hover:text-[var(--brand-orange)]">MAKE UP</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-[var(--brand-orange)]"
+                >BEAUTY TOOLS</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-[var(--brand-orange)]">FRAGRANCE</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-[var(--brand-orange)]">FOOD</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-[var(--brand-orange)]"
+                >SUPPLEMENT</a
+              >
+            </li>
+            <li>
+              <a href="#" class="font-semibold hover:text-[var(--brand-orange)]"
+                >SPECIAL OFFER</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-28">
+      <!-- Hero Section -->
+      <section class="py-16 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+          <h2 class="text-4xl font-bold text-[var(--brand-color)] mb-4">
+            Return & Refund Policy
+          </h2>
+          <p class="text-gray-600 text-md">
+            We're here to make sure you're completely satisfied with your K-Glow
+            experience.
+          </p>
+        </div>
+      </section>
+
+      <!-- Policy Content -->
+      <section class="py-12">
+        <div
+          class="max-w-4xl mx-auto px-4 space-y-10 text-gray-700 text-sm leading-relaxed"
+        >
+          <!-- 1. Overview -->
+          <div>
+            <h3 class="text-xl font-semibold text-[var(--brand-color)] mb-2">
+              1. Overview
+            </h3>
+            <p>
+              At K-Glow, your satisfaction is our top priority. If you're not
+              fully happy with your purchase, we offer hassle-free returns and
+              refunds under the conditions outlined below.
+            </p>
+          </div>
+
+          <!-- 2. Eligibility for Returns -->
+          <div>
+            <h3 class="text-xl font-semibold text-[var(--brand-color)] mb-2">
+              2. Eligibility for Returns
+            </h3>
+            <p>You may request a return if:</p>
+            <ul class="list-disc list-inside mt-2 space-y-1">
+              <li>
+                The item is unused, unopened, and in its original packaging
+              </li>
+              <li>The return request is made within 14 days of delivery</li>
+              <li>You have the order number or proof of purchase</li>
+            </ul>
+          </div>
+
+          <!-- 3. Non-Returnable Items -->
+          <div>
+            <h3 class="text-xl font-semibold text-[var(--brand-color)] mb-2">
+              3. Non-Returnable Items
+            </h3>
+            <p>We do not accept returns on the following:</p>
+            <ul class="list-disc list-inside mt-2 space-y-1">
+              <li>Used, opened, or damaged items (unless defective)</li>
+              <li>Gift cards or promotional items</li>
+              <li>Items marked “Final Sale”</li>
+            </ul>
+          </div>
+
+          <!-- 4. How to Request a Return -->
+          <div>
+            <h3 class="text-xl font-semibold text-[var(--brand-color)] mb-2">
+              4. How to Request a Return
+            </h3>
+            <p>
+              To start a return, contact us at
+              <a
+                href="mailto:returns@kglow.com"
+                class="text-[var(--brand-color)] underline"
+                >returns@kglow.com</a
+              >
+              with your order number and reason for return. Our team will guide
+              you through the next steps.
+            </p>
+          </div>
+
+          <!-- 5. Refunds -->
+          <div>
+            <h3 class="text-xl font-semibold text-[var(--brand-color)] mb-2">
+              5. Refunds
+            </h3>
+            <p>
+              Once we receive and inspect your returned item, we'll notify you
+              of the refund status. Approved refunds will be processed to your
+              original payment method within 5–7 business days.
+            </p>
+          </div>
+
+          <!-- 6. Late or Missing Refunds -->
+          <div>
+            <h3 class="text-xl font-semibold text-[var(--brand-color)] mb-2">
+              6. Late or Missing Refunds
+            </h3>
+            <p>If you haven’t received your refund yet:</p>
+            <ul class="list-disc list-inside mt-2 space-y-1">
+              <li>Check your bank account again</li>
+              <li>Contact your credit card company (it may take some time)</li>
+              <li>Contact your bank (there is often some processing time)</li>
+            </ul>
+            <p class="mt-2">
+              If you’ve done all this and still have not received your refund,
+              please contact us at
+              <a
+                href="mailto:support@kglow.com"
+                class="text-[var(--brand-color)] underline"
+                >support@kglow.com</a
+              >.
+            </p>
+          </div>
+
+          <!-- 7. Exchanges -->
+          <div>
+            <h3 class="text-xl font-semibold text-[var(--brand-color)] mb-2">
+              7. Exchanges
+            </h3>
+            <p>
+              We only replace items if they are defective or damaged. If you
+              need to exchange an item for the same one, contact us at
+              <a
+                href="mailto:support@kglow.com"
+                class="text-[var(--brand-color)] underline"
+                >support@kglow.com</a
+              >.
+            </p>
+          </div>
+
+          <!-- 8. Shipping Costs -->
+          <div>
+            <h3 class="text-xl font-semibold text-[var(--brand-color)] mb-2">
+              8. Shipping Costs
+            </h3>
+            <p>
+              Return shipping costs are the responsibility of the customer
+              unless the item is defective or the wrong item was sent. Shipping
+              costs are non-refundable.
+            </p>
+          </div>
+
+          <!-- 9. Contact -->
+          <div>
+            <h3 class="text-xl font-semibold text-[var(--brand-color)] mb-2">
+              9. Contact Us
+            </h3>
+            <p>
+              For questions or concerns about our Return & Refund Policy, reach
+              out to us at:
+              <br />
+              <strong>Email:</strong>
+              <a
+                href="mailto:support@kglow.com"
+                class="text-[var(--brand-color)] underline"
+                >support@kglow.com</a
+              >
+            </p>
+          </div>
+
+          <!-- Last Updated -->
+          <div class="text-xs text-gray-500 mt-6">
+            <p>Last Updated: September 26, 2025</p>
+          </div>
+        </div>
+      </section>
+      <!-- Footer Section -->
+      <footer
+        class="relative text-white pt-12 pb-6 px-6 md:px-16 bg-gradient-to-r from-[#0a0a0a] via-[#f36c21] to-[#0a0a0a]"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <!-- Logo and Social -->
+          <div>
+            <img src="footer-logo.png" alt="K-GLOW Logo" class="w-60 mb-4" />
+            <h4 class="text-lg font-semibold mb-2">Keep in Touch</h4>
+            <div class="flex space-x-4 text-xl text-white/90">
+              <a
+                href="#"
+                class="hover:text-white transition-colors"
+                aria-label="Facebook"
+                >🌐</a
+              >
+              <a
+                href="#"
+                class="hover:text-white transition-colors"
+                aria-label="Instagram"
+                >📸</a
+              >
+              <a
+                href="#"
+                class="hover:text-white transition-colors"
+                aria-label="YouTube"
+                >📺</a
+              >
+              <a
+                href="#"
+                class="hover:text-white transition-colors"
+                aria-label="TikTok"
+                >🎵</a
+              >
+              <a
+                href="#"
+                class="hover:text-white transition-colors"
+                aria-label="Telegram"
+                >💬</a
+              >
+            </div>
+            <h4 class="text-lg font-semibold mt-6 mb-2">Payment Accepted</h4>
+            <img
+              src="https://koreanmartbd.com/wp-content/uploads/2023/10/Payment-Banner_Jul24_V1-02-2-scaled.png"
+              alt="Payment Methods"
+              class="w-full max-w-xs"
+            />
+          </div>
+
+          <!-- Top Categories -->
+          <div>
+            <h4 class="text-lg font-semibold mb-4 text-white">
+              Top Categories
+            </h4>
+            <ul class="space-y-2 text-sm">
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Moisturizer
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Serum
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Essence
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Toner
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Cleanser
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Cream
+              </li>
+            </ul>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="text-lg font-semibold mb-4 text-white">Quick Links</h4>
+            <ul class="space-y-2 text-sm">
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Wholesale
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Sponsors
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Promo Codes
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Join Group
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Request Products
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Request Dealership
+              </li>
+            </ul>
+          </div>
+
+          <!-- Help -->
+          <div>
+            <h4 class="text-lg font-semibold mb-4 text-white">Help</h4>
+            <ul class="space-y-2 text-sm">
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                About Us
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Trade License
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Terms & Conditions
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Privacy Policy
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Return & Refund Policy
+              </li>
+              <li class="hover:text-gray-200 transition-colors cursor-pointer">
+                Contact Us
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center text-white/80 text-sm">
+          &copy; 2025 K-GLOW. All Rights Reserved.
+        </div>
+      </footer>
+    </main>
+
+    <!-- Floating Chat with Toggle Options -->
+    <div class="fixed bottom-6 right-6 z-50">
+      <div class="relative">
+        <!-- Main Chat Button -->
+        <button
+          id="mainChatBtn"
+          class="bg-[var(--brand-orange)] text-white p-4 rounded-full shadow-xl hover:scale-110 transform transition duration-300"
+        >
+          💬
+        </button>
+
+        <!-- Chat Options -->
+        <div
+          id="chatOptions"
+          class="absolute bottom-0 right-0 flex flex-col items-center space-y-4 opacity-0 scale-0 transition-all duration-300 pointer-events-none"
+        >
+          <!-- WhatsApp -->
+          <a
+            href="https://wa.me/8801234567890"
+            target="_blank"
+            class="bg-green-500 p-2 rounded-full shadow-xl hover:scale-125 transform transition duration-300 flex items-center justify-center"
+          >
+            <svg
+              width="39"
+              height="39"
+              viewBox="0 0 39 39"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                class="color-element"
+                cx="19.4395"
+                cy="19.4395"
+                r="19.4395"
+                fill="#49E670"
+              ></circle>
+              <path
+                d="M12.9821 10.1115C12.7029 10.7767 11.5862 11.442 10.7486 11.575C10.1902 11.7081 9.35269 11.8411 6.84003 10.7767C3.48981 9.44628 1.39593 6.25317 1.25634 6.12012C1.11674 5.85403 2.13001e-06 4.39053 2.13001e-06 2.92702C2.13001e-06 1.46351 0.83755 0.665231 1.11673 0.399139C1.39592 0.133046 1.8147 1.01506e-06 2.23348 1.01506e-06C2.37307 1.01506e-06 2.51267 1.01506e-06 2.65226 1.01506e-06C2.93144 1.01506e-06 3.21063 -2.02219e-06 3.35022 0.532183C3.62941 1.19741 4.32736 2.66092 4.32736 2.79397C4.46696 2.92702 4.46696 3.19311 4.32736 3.32616C4.18777 3.59225 4.18777 3.59224 3.90858 3.85834C3.76899 3.99138 3.6294 4.12443 3.48981 4.39052C3.35022 4.52357 3.21063 4.78966 3.35022 5.05576C3.48981 5.32185 4.18777 6.38622 5.16491 7.18449C6.42125 8.24886 7.39839 8.51496 7.81717 8.78105C8.09636 8.91409 8.37554 8.9141 8.65472 8.648C8.93391 8.38191 9.21309 7.98277 9.49228 7.58363C9.77146 7.31754 10.0507 7.1845 10.3298 7.31754C10.609 7.45059 12.2841 8.11582 12.5633 8.38191C12.8425 8.51496 13.1217 8.648 13.1217 8.78105C13.1217 8.78105 13.1217 9.44628 12.9821 10.1115Z"
+                transform="translate(12.9597 12.9597)"
+                fill="#FAFAFA"
+              ></path>
+              <path
+                d="M0.196998 23.295L0.131434 23.4862L0.323216 23.4223L5.52771 21.6875C7.4273 22.8471 9.47325 23.4274 11.6637 23.4274C18.134 23.4274 23.4274 18.134 23.4274 11.6637C23.4274 5.19344 18.134 -0.1 11.6637 -0.1C5.19344 -0.1 -0.1 5.19344 -0.1 11.6637C-0.1 13.9996 0.624492 16.3352 1.93021 18.2398L0.196998 23.295ZM5.87658 19.8847L5.84025 19.8665L5.80154 19.8788L2.78138 20.8398L3.73978 17.9646L3.75932 17.906L3.71562 17.8623L3.43104 17.5777C2.27704 15.8437 1.55796 13.8245 1.55796 11.6637C1.55796 6.03288 6.03288 1.55796 11.6637 1.55796C17.2945 1.55796 21.7695 6.03288 21.7695 11.6637C21.7695 17.2945 17.2945 21.7695 11.6637 21.7695C9.64222 21.7695 7.76778 21.1921 6.18227 20.039L6.17557 20.0342L6.16817 20.0305L5.87658 19.8847Z"
+                transform="translate(7.7758 7.77582)"
+                fill="white"
+                stroke="white"
+                stroke-width="0.2"
+              ></path>
+            </svg>
+          </a>
+
+          <!-- Messenger -->
+          <a
+            href="https://m.me/yourpageusername"
+            target="_blank"
+            class="bg-blue-600 p-2 rounded-full shadow-xl hover:scale-125 transform transition duration-300 flex items-center justify-center"
+          >
+            <svg
+              width="39"
+              height="39"
+              viewBox="0 0 39 39"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                class="color-element"
+                cx="19.4395"
+                cy="19.4395"
+                r="19.4395"
+                fill="#1E88E5"
+              ></circle>
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M0 9.63934C0 4.29861 4.68939 0 10.4209 0C16.1524 0 20.8418 4.29861 20.8418 9.63934C20.8418 14.98 16.1524 19.2787 10.4209 19.2787C9.37878 19.2787 8.33673 19.1484 7.42487 18.8879L3.90784 20.8418V17.1945C1.56311 15.3708 0 12.6353 0 9.63934ZM8.85779 10.1604L11.463 13.0261L17.1945 6.90384L12.1143 9.76959L9.37885 6.90384L3.64734 13.0261L8.85779 10.1604Z"
+                transform="translate(9.01854 10.3146)"
+                fill="white"
+              ></path>
+            </svg>
+          </a>
+
+          <!-- Close Button -->
+          <button
+            id="closeChatBtn"
+            class="bg-gray-200 p-2 rounded-full shadow hover:bg-gray-300 transition"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div
+      id="cartDrawer"
+      class="fixed right-0 top-0 h-full w-80 bg-white shadow-lg transform translate-x-full transition-transform z-50 flex flex-col"
+    >
+      <div class="p-4 border-b flex items-center justify-between">
+        <h3 class="font-semibold">Shopping Cart</h3>
+        <button id="closeCart">✕</button>
+      </div>
+      <div id="cartItems" class="p-4 space-y-4 overflow-auto flex-1"></div>
+      <div class="p-4 border-t">
+        <div class="flex justify-between items-center mb-2">
+          <div class="font-medium">Subtotal</div>
+          <div class="font-semibold">৳<span id="cartTotal">0.00</span></div>
+        </div>
+        <button
+          id="checkoutBtn"
+          class="w-full py-2 text-white font-semibold rounded-lg bg-gradient-to-r from-[#f36c21] via-[#ff8c42] to-[#ffb67a] hover:from-[#ff8c42] hover:via-[#ff9a4d] hover:to-[#ffc08a] transition-colors duration-300"
+        >
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // ---------- Cart & Modal logic ----------
+      const allProducts = [...featuredProducts, ...bestSellers, ...newArrivals];
+      let cart = [];
+
+      function refreshCartUI() {
+        document.getElementById("cartCount").textContent = cart.reduce(
+          (s, i) => s + i.qty,
+          0
+        );
+        const wrap = document.getElementById("cartItems");
+        wrap.innerHTML = "";
+        if (cart.length === 0) {
+          wrap.innerHTML =
+            "<p class='text-sm text-gray-500'>Your cart is empty</p>";
+          document.getElementById("cartTotal").textContent = "0.00";
+          return;
+        }
+        let total = 0;
+        cart.forEach((it) => {
+          total += it.price * it.qty;
+          const row = document.createElement("div");
+          row.className = "flex items-center gap-3 mb-3";
+          row.innerHTML = `
+            <img src="${it.img}" class="w-14 h-14 object-cover rounded"/>
+            <div class="flex-1">
+              <div class="font-medium">${it.title}</div>
+              <div class="text-sm text-gray-600">৳${it.price.toFixed(2)} x ${
+            it.qty
+          }</div>
+            </div>
+            <div>
+              <button class="removeBtn text-red-500" data-id="${
+                it.id
+              }">Remove</button>
+            </div>
+          `;
+          wrap.appendChild(row);
+        });
+        document.getElementById("cartTotal").textContent = total.toFixed(2);
+      }
+
+      // Event delegation for add/remove/modal/open cart
+      document.addEventListener("click", (e) => {
+        // Add to cart from any section
+        if (e.target && e.target.classList.contains("addBtn")) {
+          const id = parseInt(e.target.dataset.id);
+          const p = allProducts.find((x) => x.id === id);
+          if (!p) return;
+          const exist = cart.find((c) => c.id === id);
+          if (exist) exist.qty++;
+          else cart.push({ ...p, qty: 1 });
+          refreshCartUI();
+          document
+            .getElementById("cartDrawer")
+            .classList.remove("translate-x-full");
+        }
+
+        // Remove from cart
+        if (e.target && e.target.classList.contains("removeBtn")) {
+          const id = parseInt(e.target.dataset.id);
+          cart = cart.filter((c) => c.id !== id);
+          refreshCartUI();
+        }
+
+        // Open cart drawer
+        if (
+          e.target &&
+          (e.target.id === "cartBtn" || e.target.closest("#cartBtn"))
+        ) {
+          document
+            .getElementById("cartDrawer")
+            .classList.toggle("translate-x-full");
+        }
+        if (e.target && e.target.id === "closeCart")
+          document
+            .getElementById("cartDrawer")
+            .classList.add("translate-x-full");
+
+        // Product preview (image)
+        if (e.target && e.target.classList.contains("product-img")) {
+          const id = parseInt(e.target.dataset.id);
+          const p = allProducts.find((x) => x.id === id);
+          if (!p) return;
+          // populate modal
+          document.getElementById("modalImg").src = p.img;
+          document.getElementById("modalTitle").textContent = p.title;
+          // stars
+          document.getElementById("modalRating").innerHTML =
+            '<span class="text-yellow-400">' +
+            "★".repeat(p.rating) +
+            "</span>" +
+            '<span class="text-gray-300">' +
+            "★".repeat(5 - p.rating) +
+            "</span>" +
+            ` <span class="text-gray-500 text-sm">(${p.reviews} reviews)</span>`;
+          document.getElementById("modalOriginal").textContent =
+            "৳" + p.originalPrice.toFixed(2);
+          document.getElementById("modalPrice").textContent =
+            "৳" + p.price.toFixed(2);
+          document.getElementById("modalDescription").textContent =
+            p.description;
+          document.getElementById("modalQty").value = 1;
+          document.getElementById("productModal").classList.remove("hidden");
+        }
+      });
+
+      // Modal add to cart
+      document.getElementById("modalAdd").addEventListener("click", () => {
+        const qty = parseInt(document.getElementById("modalQty").value) || 1;
+        const title = document.getElementById("modalTitle").textContent;
+        const p = allProducts.find((x) => x.title === title);
+        if (!p) return;
+        const exist = cart.find((c) => c.id === p.id);
+        if (exist) exist.qty += qty;
+        else cart.push({ ...p, qty });
+        refreshCartUI();
+        document.getElementById("productModal").classList.add("hidden");
+        document
+          .getElementById("cartDrawer")
+          .classList.remove("translate-x-full");
+      });
+
+      // Close modal
+      document
+        .getElementById("closeModal")
+        .addEventListener("click", () =>
+          document.getElementById("productModal").classList.add("hidden")
+        );
+      // Close modal by clicking overlay (but ignore clicks inside modal)
+      document.getElementById("productModal").addEventListener("click", (e) => {
+        if (e.target.id === "productModal")
+          document.getElementById("productModal").classList.add("hidden");
+      });
+
+      // Initialize cart UI
+      refreshCartUI();
+
+      //  chatbox
+      const mainBtn = document.getElementById("mainChatBtn");
+      const chatOptions = document.getElementById("chatOptions");
+      const closeBtn = document.getElementById("closeChatBtn");
+
+      mainBtn.addEventListener("click", () => {
+        mainBtn.classList.add("hidden");
+        chatOptions.classList.remove(
+          "opacity-0",
+          "scale-0",
+          "pointer-events-none"
+        );
+        chatOptions.classList.add("opacity-100", "scale-100");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        chatOptions.classList.remove("opacity-100", "scale-100");
+        chatOptions.classList.add(
+          "opacity-0",
+          "scale-0",
+          "pointer-events-none"
+        );
+        mainBtn.classList.remove("hidden");
+      });
+    </script>
+    <script>
+      const loginBtn = document.getElementById("loginBtn");
+      const registerBtn = document.getElementById("registerBtn");
+      const sideModal = document.getElementById("sideModal");
+      const modalOverlay = document.getElementById("modalOverlay");
+      const closeModal = document.getElementById("closeModal");
+      const loginForm = document.getElementById("loginForm");
+      const registerForm = document.getElementById("registerForm");
+      const modalTitle = document.getElementById("modalTitle");
+      const switchToRegister = document.getElementById("switchToRegister");
+      const switchToLogin = document.getElementById("switchToLogin");
+
+      function openModal(formType) {
+        sideModal.classList.remove("translate-x-full");
+        modalOverlay.classList.remove("hidden");
+        document.body.classList.add("overflow-hidden"); // prevent background scroll
+        if (formType === "login") {
+          loginForm.classList.remove("hidden");
+          registerForm.classList.add("hidden");
+          modalTitle.textContent = "Login";
+        } else {
+          registerForm.classList.remove("hidden");
+          loginForm.classList.add("hidden");
+          modalTitle.textContent = "Register";
+        }
+      }
+
+      function closeModalFunc() {
+        sideModal.classList.add("translate-x-full");
+        modalOverlay.classList.add("hidden");
+        document.body.classList.remove("overflow-hidden"); // restore scroll
+      }
+
+      loginBtn.addEventListener("click", () => openModal("login"));
+      registerBtn.addEventListener("click", () => openModal("register"));
+      closeModal.addEventListener("click", closeModalFunc);
+      modalOverlay.addEventListener("click", closeModalFunc);
+
+      switchToRegister.addEventListener("click", () => openModal("register"));
+      switchToLogin.addEventListener("click", () => openModal("login"));
+    </script>
+  </body>
+</html>

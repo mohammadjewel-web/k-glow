@@ -1,0 +1,36 @@
+##############################################################################
+# COPY THESE LINES TO YOUR .env FILE
+# Replace the existing MAIL_* settings with these values
+##############################################################################
+
+MAIL_MAILER=smtp
+MAIL_HOST=mail.bismillahgoods.com
+MAIL_PORT=465
+MAIL_USERNAME=jp@bismillahgoods.com
+MAIL_PASSWORD="bV6{PmMCzYcB"
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=jp@bismillahgoods.com
+MAIL_FROM_NAME="K-Glow"
+
+##############################################################################
+# ALTERNATIVE CONFIGURATION (If port 465 doesn't work, try port 587)
+##############################################################################
+# MAIL_PORT=587
+# MAIL_ENCRYPTION=tls
+
+##############################################################################
+# AFTER UPDATING .env FILE, RUN THESE COMMANDS:
+##############################################################################
+# php artisan config:clear
+# php artisan cache:clear
+# php artisan optimize:clear
+
+##############################################################################
+# TO TEST EMAIL, RUN:
+##############################################################################
+# php artisan tinker
+# Mail::raw('Test email', function($m) { $m->to('your-email@example.com')->subject('Test from K-Glow'); });
+# exit
+
+
+
